@@ -1,0 +1,2 @@
+#ifndef WORD_GENERATOR
+#define WORD_GENERATOR
