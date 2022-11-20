@@ -3,7 +3,7 @@ Amir Djelidi						        Projet TI301
 Titouan Constant				     Générateur de phrase
 
 
-Vous pouvez utiliser l'IDE de votre choix tant qu'il est compatible avec le langage C.
+Vous pouvez utiliser l'IDE de votre choix tant qu'il est compatible avec le langage C mais on vous recommande d'utiliser replit car c'est avec lui qu'on obtient les meilleurs résultats.
 
 Veuillez suivre les consignes qui seront afficher dans votre console lorsque vous aurez lancé le programme.
 
