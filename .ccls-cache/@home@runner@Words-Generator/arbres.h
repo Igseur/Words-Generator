@@ -13,7 +13,6 @@ typedef struct
 
 t_tree createEmptyTree ();
 void addWord(t_tree *, char *, char *, char *);
-int in_table(p_node , char val);
+int in_tree(p_node , char*, int);
 void displayWord(p_node ,int);
-/*void tableWord(p_node,int,char *);*/
 #endif

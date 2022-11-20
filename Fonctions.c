@@ -15,7 +15,7 @@ void recup_mot(int cpt, char* ligne_out ){
   char mots;
   int i = 0;
   FILE* fichier = NULL;
-  fichier = fopen("dictionnaire_non_accentue.txt", "r");
+  fichier = fopen("mini_dico.txt", "r");
   if(fichier != NULL){
     for(i=0;i<cpt;i++){
       fgets(ligne_out, 256, fichier);
@@ -30,9 +30,9 @@ void recup_mot(int cpt, char* ligne_out ){
 
 void verif(char *nom, char *ligne){
   char buffer[256];
-  int cpt = 5000;
+  int cpt = 202;
   FILE* fichier = NULL;
-  fichier = fopen("mini_dico.txt", "r");
+  fichier = fopen("dictionnaire_non_accentue.txt", "r");
 
     if(fichier != NULL){
       for(int i=0;i<cpt;i++){

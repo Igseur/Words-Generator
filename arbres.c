@@ -13,69 +13,77 @@ t_tree createEmptyTree (){
     return mytree;
 }
 
-/*int in_table(p_node noeud, char val) {
-    int i = 0, check = 0;
-    while ((i < noeud->nbrKids) && (check == 0)) {
-        if (noeud->kids[i]->lettre == val) 
-				{
-						printf("check !\n");
-            check = 1;
-            printf("C'est %c\n",noeud->kids[i]->lettre);
-        }
-				
-        i++;
-    }
+int in_tree(p_node Node, char *val, int i) {
+    int check = 0, check2 =0;
+		int j = 0;
+	if((Node->kids[j] != NULL) && (val[i]!='\0'))
+	{
+		while(i==0 && Node->kids[j] != NULL && Node->kids[j]->lettre != val[i])
+			{
+			j++;
+				printf("%d",j);
+			}
+		if(Node->kids[j]==NULL)
+		{
+			return check=1;
+		}
+		if(val[i]!='\0')
+		{
+			if ((Node->kids[j]->lettre == val[i]) && (check == 0))
+			{
+				in_tree(Node->kids[j], val, i+1);
+			}
+	
+			else
+			{
+				check = 1;
+			}
+		}
 		
+		
+		}
+	else{
+		check = 1;}
+	
+	return check;
+}
 
-    return check;
-}*/
 
 void addWord(t_tree *Tree, char forme_base[], char forme_flechie[], char type[])
 {
-    int i=0;
-		Tree->nbrWord += 1;
+    int i=0, same = 0;
+		Tree->nbrWord ++;
     p_node tmp = Tree->root;
-		
-    while(forme_base[i+1] != '\0')
-    {
-			/*if (in_table(tmp, forme_base[i])==0)
-        {
-						p_node nv_temp = addKid(tmp, forme_base[i]);
-						tmp = nv_temp;
-           	
-            }
-        else
-        {
-						int j = 0;
-            while ((tmp->kids[j]->lettre != forme_base[i])){
-                j++;
-            }
-            tmp = tmp->kids[j];
-            
-        }*/
-
-			tmp = addKid(tmp, forme_base[i]);
+	
+		/*if (Tree->nbrWord-1 != 0)
+		{
 			
-        i++;
-    }
-	tmp = addKid(tmp, forme_base[i]);
-	tmp->end = 1;
-	/*if (tmp->flechie->head->flechie == NULL)
-	{
-  tmp->flechie->head->flechie = forme_flechie;
+		same = in_tree(tmp, forme_base,0);
+			}
+		else{
+			same = 1;
 		}
-	else
-	{
-		t_std_list tes = tmp->flechie->head->next;
-	}
-	if (tmp->flechie->head->type == NULL)
-	{
-	tmp->flechie->head->type = type;
-		}
+		if (same == 1)
+		{
+			*/
+    	while(forme_base[i+1] != '\0')
+    	{
+			
+				tmp = addKid(tmp, forme_base[i]);
 
 
-*/
-}
+				
+				i++;
+    	}
+			
+		tmp = addKid(tmp, forme_base[i]);
+		tmp->end = 1;
+		}
+	
+
+
+
+
 void displayWord(p_node Node,int n_word)
 	
 {
@@ -87,29 +95,3 @@ void displayWord(p_node Node,int n_word)
 	}
 
 }
-/*
-void tableWord(p_node Node,int n_word,char *word)
-{
-
-while(i == 0)
-{
-printf("%c",tmp->kids[i]->lettre);
-i = displayWord(tmp->kids[n_word],n_word);
-}
-	int i=0;
-	
-	while(word[i]!='\0')
-		{
-			i++;
-		}
-	
-	word[i] = Node->lettre;
-	word[i+1] = '\0';
-	if (Node->end == 0)
-	{
-		
-		tableWord(Node->kids[0], n_word, word);
-	}
-printf("%s\n",word);
-}
-*/

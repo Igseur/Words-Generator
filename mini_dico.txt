@@ -194,7 +194,7 @@ marmottassent	marmotter	Ver:SImp+PL+P3
 marmottasses	marmotter	Ver:SImp+SG+P2
 marmottassiez	marmotter	Ver:SImp+PL+P2
 marmottassions	marmotter	Ver:SImp+PL+P1
-marmottates	marmotter	Ver:IPSim+PL+P2
-marmottat	marmotter	Ver:SImp+SG+P3
 marmotte	marmotte	Nom:Fem+SG
 ontologiquement	ontologiquement	Adv
+adroitement	adroitement	Adv
+zython	zython	Nom:Mas+SG

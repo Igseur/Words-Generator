@@ -15,6 +15,7 @@ int hasard(int aim)
     a = rand() % aim;
 	return a;
 }
+
 void generate_model_1_base(t_tree nom,t_tree adjectif, t_tree verbe)
 {
 	int a, b, c, d;
@@ -62,24 +63,86 @@ void generate_random_word(t_tree Tree)
     printf(" ");
 }
 
-void rechercher_mot(t_tree Tree, char *mot)
+int rechercher_mot2(p_node Node, char *val, int i)
 {
-	int i = 0;
+	int check = 0, check2 =0;
 	int j = 0;
-	int check = 0;
-	
-	while (Tree.root->kids[i] != NULL)
+	if((Node != NULL) && (val[i]!='\0'))
+	{
+		
+		if(Node==NULL)
 		{
-			if (Tree.root->kids[i]->lettre == mot[j]){
-				check = 1;
-				j++;
-				printf("%c %c",Tree.root->kids[i]->lettre, mot[j]);
+			return check=1;
+		}
+		if(val[i]!='\0')
+		{
+			if ((Node->lettre == val[i]) && (check == 0))
+			{
+				check = rechercher_mot2(Node->kids[j], val, i+1);
 			}
-	i++;
+
+				
+			else
+			{
+				
+				return check = 0;
+			}
+		}
+		
+		
+		}
+	else{
+		return check = 1;
 		}
 	
-	
+	return check;
 }
+
+
+
+int rechercher_mot(p_node Node, char *val, int i)
+{
+	int check = 0, realcheck =0;
+	int j = 0;
+	if(Node->kids[j] != NULL)
+	{
+		while(i==0 && Node->kids[j] != NULL && Node->kids[j]->lettre != val[i])
+			{
+			j++;	
+			}
+		if(Node->kids[j]==NULL)
+		{
+			return check=1;
+		}
+
+		while (realcheck != 1)
+		{
+			
+			while(Node->kids[j] != NULL && Node->kids[j]->lettre != val[i] && realcheck == 0)
+			{
+				j++;
+				
+				if(j+1>Node->nbrKids){
+					return check;
+				}
+			}
+			
+		
+			
+			
+			realcheck = rechercher_mot2(Node->kids[j], val, i);
+			j++;
+			if(j+1>Node->nbrKids){
+					return check;
+				}
+		}
+		
+	
+	
+	}
+	check = 1;
+	return check;
+	}
 
 int main() {
 	 
@@ -93,7 +156,7 @@ int main() {
   adverbe = createEmptyTree();
   adjectif = createEmptyTree();
 	
-	while(cpt!=200)
+	while(cpt!=202)
 	{
     char* flechie;
     char* normal;
@@ -125,17 +188,18 @@ int main() {
 
 void menu(t_tree nom, t_tree adjectif, t_tree verbe, t_tree adverbe){
 	int choix;
+	char mots[34];
 	int choix2;
 	int choix3;
 	int choix4;
-    printf("************HELLO************\n");
-    printf("Bienvenue sur le generateur de phrase\n1.Générer une phrase avec des mots(forme de base).\n2.Recherche de mot        (H.S).\n3.Extraire un mot au hasard\n4.Quitter\n-> ");
+    
+    printf("Bienvenue sur le generateur de phrase\n1.Générer une phrase avec des mots(forme de base).\n2.Recherche de mot.\n3.Extraire un mot au hasard\n4.Quitter\n-> ");
 
 	scanf("%d",&choix);
 	switch(choix)
 		{
 			case 1:
-			printf("Souhaitez-vous lancer \n1.Le modèle N 1\n2.Le modèle N 2\n");
+			printf("Souhaitez-vous lancer \n1.Le modèle N 1\n2.Le modèle N 2\n->");
 
 	scanf("%d",&choix4);
 	switch(choix4)
@@ -146,29 +210,68 @@ void menu(t_tree nom, t_tree adjectif, t_tree verbe, t_tree adverbe){
 			case 2:
 			generate_model_2_base(nom,adjectif,verbe);
 			break;
-			};
+		};
 			break;
-			/*case 2:
+			
+			case 2:
 			printf("Souhaitez-vous\n1.Un nom\n2.Un verbe\n3.Un adjectif\n4.Un adverbe ?\n");
 			scanf("%d",&choix2);
-			switch(choix2)
+			printf("Quel mot cherchez-vous ?\n");
+			scanf("%s",mots);
+				switch(choix2)
+		{
+			
+			
+			case 1:
+				
+				if(rechercher_mot(nom.root, mots, 0) == 1)
 				{
-					case 1:
-					printf("quel mot souhaitez-vous ?");
-					break;
-					case 2:
-					generate_random_word(verbe);
-					break;
-					case 3:
-					generate_random_word(adjectif);
-					break;
-					case 4:
-					generate_random_word(adverbe);
-					break;
-				default:
-					printf("erreur, fermeture de l'application");
+					printf("Le mot a bien été trouvé.");
 				}
-			break;*/
+				else
+				{
+					printf("Le mot n'a pas été trouvé.");
+				}
+			break;
+			case 2:
+				
+				if(rechercher_mot(verbe.root, mots, 0) == 1)
+				{
+					printf("Le mot a bien été trouvé.");
+				}
+				else
+				{
+					printf("Le mot n'a pas été trouvé.");
+				}
+			break;
+			case 3:
+				
+				if(rechercher_mot(adjectif.root,mots, 0) == 1)
+				{
+					printf("Le mot a bien été trouvé.");
+				}
+				else
+				{
+					printf("Le mot n'a pas été trouvé.");
+				}
+			break;
+			case 4:
+				
+				if(rechercher_mot(adverbe.root, mots, 0) == 1)
+				{
+					printf("Le mot a bien été trouvé.");
+				}
+				else
+				{
+					printf("Le mot n'a pas été trouvé.");
+				}
+				break;
+				default:
+					printf("Erreur");
+			
+			}
+			break;
+			
 			case 3:
 			printf("Souhaitez-vous\n1.Un nom\n2.Un verbe\n3.Un adjectif\n4.Un adverbe ?\n");
 			scanf("%d",&choix3);
